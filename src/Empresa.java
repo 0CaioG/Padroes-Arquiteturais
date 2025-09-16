@@ -39,4 +39,13 @@ public class Empresa {
         }
     }
 
+    public Funcionario buscarFuncionario(String cpf){
+        for (Funcionario f : funcionarios){
+            if(f.cpf == cpf){
+                return  f;
+            }
+        }
+        return null;
+    }
+
 }
