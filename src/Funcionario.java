@@ -34,6 +34,8 @@ public class Funcionario {
     }
 
     public void mostrarFuncionario(){
-        System.out.println("Funcionario: "+nome+" Ssalario: R$"+salario);
+        System.out.println("Funcionario: "+nome+" Salario: R$"+salario);
     }
+
+    public void aplicarBonificacao(Double valor){ }
 }

@@ -4,7 +4,8 @@ public class Empregado extends Funcionario{
         super(nome, cpf, salario);
     }
 
-    public void aplicarComissao(Double comissao){
+    @Override
+    public void aplicarBonificacao(Double comissao){
         salario = salario+comissao;
         System.out.println("O novo salario com a comissão aplicada é de: R$"+salario);
     }
