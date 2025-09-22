@@ -23,12 +23,14 @@ public class ControleEmpresa {
             empresa.adicionarFuncionario(novoFuncionario);
             return novoFuncionario;
         }
+        // Adicionando uma mensagem de debug para identificar o problema
+        System.out.println("Erro: Empresa '" + nomeEmpresa + "' não encontrada ou dados inválidos!");
         return null;
     }
 
     public Empresa buscarEmpresa(String nome){
         for(Empresa e : empresasCadastradas){
-            if(e.nome == nome){
+            if(e.nome.equals(nome)){  // Corrigido para usar equals em vez de ==
                 return e;
             }
         }
@@ -54,8 +56,16 @@ public class ControleEmpresa {
 
     public void bonificarFuncionario(String nomeEmpresa, String cpf, Double bonificacao){
         Empresa empresa = buscarEmpresa(nomeEmpresa);
-        Funcionario funcionario = empresa.buscarFuncionario(cpf);
-        funcionario.aplicarBonificacao(bonificacao);
+        if (empresa != null) {  // Adicionando verificação de null
+            Funcionario funcionario = empresa.buscarFuncionario(cpf);
+            if (funcionario != null) {  // Adicionando verificação de null
+                funcionario.aplicarBonificacao(bonificacao);
+            } else {
+                System.out.println("Erro: Funcionário com CPF '" + cpf + "' não encontrado!");
+            }
+        } else {
+            System.out.println("Erro: Empresa '" + nomeEmpresa + "' não encontrada!");
+        }
     }
 
     public void listarEmpresas(){

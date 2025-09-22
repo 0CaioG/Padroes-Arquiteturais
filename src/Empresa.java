@@ -14,7 +14,7 @@ public class Empresa {
 
     public boolean alterarFuncionario(String cpf, String nome, Double salario){
         for(Funcionario f: funcionarios){
-            if(f.getCpf() == cpf){
+            if(f.getCpf().equals(cpf)){  // Corrigido para usar equals em vez de ==
                 f.setNome(nome);
                 f.setSalario(salario);
                 return true;
@@ -25,7 +25,7 @@ public class Empresa {
 
     public boolean removerFuncionario(String cpf){
         for(Funcionario f: funcionarios){
-            if(f.getCpf() == cpf){
+            if(f.getCpf().equals(cpf)){  // Corrigido para usar equals em vez de ==
                 funcionarios.remove(f);
                 return true;
             }
@@ -41,7 +41,7 @@ public class Empresa {
 
     public Funcionario buscarFuncionario(String cpf){
         for (Funcionario f : funcionarios){
-            if(f.cpf == cpf){
+            if(f.cpf.equals(cpf)){  // Corrigido para usar equals em vez de ==
                 return  f;
             }
         }

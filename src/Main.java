@@ -34,15 +34,15 @@ public class Main {
 
     private static int lerOpcao() {
         try {
-            return scanner.nextInt();
+            String input = scanner.nextLine();
+            return Integer.parseInt(input);
         } catch (Exception e) {
-            scanner.nextLine();
             return -1;
         }
     }
 
     private static void executarOpcao(int opcao) {
-        scanner.nextLine();
+        // Removido scanner.nextLine() daqui pois já está sendo tratado em lerOpcao()
 
         switch (opcao) {
             case 1:
@@ -100,7 +100,7 @@ public class Main {
     }
 
     private static void cadastrarFuncionario() {
-        System.out.println("\n--- CADASTRO DE FUNCIONÁRIO ---");
+        System.out.println("\n--- CADASTRO DE FUNCIONÁRÍO ---");
         
         System.out.print("Nome da empresa: ");
         String nomeEmpresa = scanner.nextLine();
@@ -121,13 +121,16 @@ public class Main {
         System.out.print("Escolha: ");
         int tipo = scanner.nextInt();
         scanner.nextLine();
-        
-        Funcionario funcionario = controle.cadastrarFuncionarioEmpresa(nomeEmpresa, tipo, nome, cpf, salario);
-        
-        if (funcionario != null) {
-            System.out.println("Funcionário cadastrado com sucesso!");
-        } else {
-            System.out.println("Erro ao cadastrar funcionário!");
+
+        try {
+            Funcionario funcionario = controle.cadastrarFuncionarioEmpresa(nomeEmpresa, tipo, nome, cpf, salario);
+            if (funcionario != null) {
+                System.out.println("Funcionário cadastrado com sucesso!");
+            } else {
+                System.out.println("Erro ao cadastrar funcionário! Verifique se a empresa existe.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
         }
     }
 
